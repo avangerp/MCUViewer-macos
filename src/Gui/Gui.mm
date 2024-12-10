@@ -66,16 +66,16 @@ Gui::Gui(PlotHandler* plotHandler, VariableHandler* variableHandler, ConfigHandl
 	glfwMakeContextCurrent(window);
 	glfwMaximizeWindow(window);
 
-    contentScale = getContentScale(window);
+    GuiHelper::contentScale = getContentScale(window);
 
     ImFontConfig cfg;
-	cfg.SizePixels = 13.0f * contentScale;
+	cfg.SizePixels = 13.0f * GuiHelper::contentScale;
 
-	ImGui::GetStyle().ScaleAllSizes(contentScale);
+	ImGui::GetStyle().ScaleAllSizes(GuiHelper::contentScale);
 
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 	io.Fonts->AddFontDefault(&cfg);
 	io.FontGlobalScale = 1.0f;
 
