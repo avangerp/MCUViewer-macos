@@ -155,9 +155,13 @@ Gui::Gui(PlotHandler* plotHandler, ConfigHandler* configHandler, IFileHandler* f
             
             if (glfwWindowShouldClose(window))
             {
-                plotHandler->setViewerState(PlotHandlerBase::state::STOP);
-                tracePlotHandler->setViewerState(PlotHandlerBase::state::STOP);
-                askShouldSaveOnExit(glfwWindowShouldClose(window));
+				viewerDataHandler->setState(DataHandlerBase::State::STOP);
+				traceDataHandler->setState(DataHandlerBase::State::STOP);
+
+				if (configHandler->isSavingRequired(projectElfPath))
+					askShouldSaveOnExit(glfwWindowShouldClose(window));
+				else
+					done = true;
             }
             glfwSetWindowShouldClose(window, done);
 		    checkShortcuts();
@@ -174,26 +178,27 @@ Gui::Gui(PlotHandler* plotHandler, ConfigHandler* configHandler, IFileHandler* f
                 if (ImGui::Begin("Trace Plots"))
                     drawPlotsSwo();
                 ImGui::End();
-                drawStartButton(tracePlotHandler);
+                drawStartButton(traceDataHandler);
                 drawSettingsSwo();
                 drawIndicatorsSwo();
                 drawPlotsTreeSwo();
             }
             ImGui::End();
 
-            if (ImGui::Begin("Var Viewer"))
-            {
-                activeView = ActiveViewType::VarViewer;
-                drawAcqusitionSettingsWindow(activeView);
-                drawStartButton(plotHandler);
-                drawVarTable();
-                drawPlotsTree();
-                drawImportVariablesWindow();
-                ImGui::SetNextWindowClass(&window_class);
-                if (ImGui::Begin("Plots"))
-                    drawPlots();
-                ImGui::End();
-            }
+			if (ImGui::Begin("Var Viewer"))
+			{
+				activeView = ActiveViewType::VarViewer;
+				drawAcqusitionSettingsWindow(activeView);
+				drawStartButton(viewerDataHandler);
+				variableTable->draw();
+				plotsTree->draw();
+				plotEditWindow->draw();
+				ImGui::SetNextWindowClass(&window_class);
+				if (ImGui::Begin("Plots"))
+					drawPlots();
+				ImGui::End();
+			}
+
             ImGui::End();
 
             popup.handle();
@@ -571,12 +576,4 @@ void Gui::showChangeFormatPopup(const char* text, Plot& plt, const std::string& 
 	}
 
 	plt.setSeriesDisplayFormat(name, static_cast<Plot::displayFormat>(format));
-}
-
-void Gui::drawTextAlignedToSize(std::string&& text, size_t alignTo)
-{
-	size_t currentLength = text.length();
-	size_t spacesToAdd = (currentLength < alignTo) ? (alignTo - currentLength) : 0;
-	std::string alignedText = text + std::string(spacesToAdd, ' ');
-	ImGui::Text("%s", alignedText.c_str());
 }
