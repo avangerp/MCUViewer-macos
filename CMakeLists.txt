@@ -7,7 +7,7 @@ endif()
 
 project(MCUViewer)
 
-set(MCUVIEWER_VERSION 1.0.1)
+set(MCUVIEWER_VERSION 1.1.0)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
@@ -92,12 +92,14 @@ set(PROJECT_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ImguiPlugins/ImguiPlugins.cpp   
     ${CMAKE_CURRENT_SOURCE_DIR}/src/PlotHandler/PlotHandlerBase.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/PlotHandler/PlotHandler.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/PlotHandler/TracePlotHandler.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/TraceReader/TraceReader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/TraceReader/StlinkTraceProbe.cpp
     # ${CMAKE_CURRENT_SOURCE_DIR}/src/TraceReader/JlinkTraceProbe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/GdbParser/GdbParser.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/CSVStreamer/CSVStreamer.cpp)
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/CSVStreamer/CSVStreamer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/VariableHandler/VariableHandler.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/DataHandler/ViewerDataHandler.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/DataHandler/TraceDataHandler.cpp)
 
 set(IMGUI_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/third_party/imgui/imgui.cpp
@@ -163,7 +165,10 @@ target_include_directories(${EXECUTABLE} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/RingBuffer
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Statistics
     ${CMAKE_CURRENT_SOURCE_DIR}/src/GdbParser
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/CSVStreamer)
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/PlotGroupHandler
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/CSVStreamer
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/VariableHandler
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/DataHandler)
 
 target_include_directories(${EXECUTABLE} SYSTEM PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/third_party/stlink/inc/
