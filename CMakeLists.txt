@@ -79,9 +79,8 @@ set(PROJECT_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Gui/GuiSwoPlots.mm
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Gui/GuiSwoControl.mm
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Gui/GuiAbout.mm
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/Gui/GuiImportVariables.mm
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Gui/GuiAcqusition.mm
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/MemoryReader/MemoryReader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Gui/GuiHelper.mm
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MemoryReader/StlinkDebugProbe.cpp
     # ${CMAKE_CURRENT_SOURCE_DIR}/src/MemoryReader/JlinkDebugProbe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Plot/Plot.cpp
@@ -89,8 +88,7 @@ set(PROJECT_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/MovingAverage/MovingAverage.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ConfigHandler/ConfigHandler.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/FileHandler/NFDFileHandler.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ImguiPlugins/ImguiPlugins.cpp   
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/PlotHandler/PlotHandlerBase.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ImguiPlugins/ImguiPlugins.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/PlotHandler/PlotHandler.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/TraceReader/TraceReader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/TraceReader/StlinkTraceProbe.cpp
