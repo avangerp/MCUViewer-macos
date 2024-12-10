@@ -1,11 +1,3 @@
-// Dear ImGui: standalone example application for GLFW + Metal, using programmable pipeline
-// (GLFW is a cross-platform general purpose library for handling windows, inputs, OpenGL/Vulkan/Metal graphics context creation, etc.)
-
-// Learn about Dear ImGui:
-// - FAQ                  https://dearimgui.com/faq
-// - Getting Started      https://dearimgui.com/getting-started
-// - Documentation        https://dearimgui.com/docs (same as your local docs/ folder).
-// - Introduction, links and more at the top of imgui.cpp
 #include "Gui.hpp"
 
 #include <imgui.h>
@@ -487,6 +479,7 @@ bool Gui::openProject(std::string externalPath)
 		devicesList.clear();
 		if (viewerDataHandler->getProbeSettings().debugProbe == 1)
 			// debugProbeDevice = jlinkProbe;
+			;
 		else
 			debugProbeDevice = stlinkProbe;
 
@@ -494,6 +487,7 @@ bool Gui::openProject(std::string externalPath)
 
 		if (traceDataHandler->getProbeSettings().debugProbe == 1)
 			// traceProbeDevice = jlinkTraceProbe;
+			;
 		else
 			traceProbeDevice = stlinkTraceProbe;
 
